@@ -3,7 +3,7 @@ name: 🚀 Deploy vía FTP desde rama deploy
 on:
   push:
     branches:
-      - deploy
+      - main
 
 jobs:
   ftp-deploy:
