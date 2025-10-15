@@ -6,6 +6,8 @@
     --dark: #000000;
 }
 
+
+
 .spinner-logo {
     animation: pulse-animation 2s ease-in-out infinite;
 }
