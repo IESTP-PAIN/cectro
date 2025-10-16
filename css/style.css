@@ -6,7 +6,18 @@
     --dark: #000000;
 }
 
+.container-teams {
+    max-width: 1200px;
+    max-height: 1000px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
 
+#team {
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
+}
 
 .spinner-logo {
     animation: pulse-animation 2s ease-in-out infinite;
