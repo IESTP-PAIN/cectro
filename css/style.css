@@ -445,3 +445,49 @@
 .copyright a:hover {
     color: var(--light);
 }
+/* ===== SUBMENÚS DENTRO DEL DROPDOWN ===== */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+  background-color: #ffffff; /* igual que el fondo que se ve oscuro */
+  border-radius: 4px;
+}
+
+/* Mostrar solo el submenú del elemento activo */
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+
+/* Estilo para los textos */
+.dropdown-menu .dropdown-item {
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #F3BD00;
+  color: #000;
+}
+
+/* Alinear la flecha ▸ */
+.dropdown-submenu > .dropdown-item::after {
+  content: "▸";
+  float: right;
+}
+
+/* Evitar que todos los submenús se abran a la vez */
+.dropdown-menu > .dropdown-submenu:not(:hover) > .dropdown-menu {
+  display: none !important;
+}
+
+/* Transición más suave */
+.dropdown-menu {
+  transition: all 0.2s ease-in-out;
+}
