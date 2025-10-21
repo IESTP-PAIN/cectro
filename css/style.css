@@ -451,13 +451,13 @@
 }
 
 .dropdown-submenu > .dropdown-menu {
-  display: none;
-  position: absolute;
   top: 0;
   left: 100%;
-  margin-top: -1px;
-  background-color: #ffffff; /* igual que el fondo que se ve oscuro */
-  border-radius: 4px;
+  margin-top: 0;
+  margin-left: 0;
+  border-radius: 0;
+  display: none;
+  position: absolute;
 }
 
 /* Mostrar solo el submenú del elemento activo */
@@ -487,7 +487,238 @@
   display: none !important;
 }
 
-/* Transición más suave */
+/* === diplomados.css === */
+/* --- Ajustes generales --- */
 .dropdown-menu {
-  transition: all 0.2s ease-in-out;
+  padding: 0 !important;
+  margin: 0 !important;
 }
+
+/* --- Submenú (solo escritorio) --- */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  display: none;
+  position: absolute !important;
+  top: 0 !important;
+  left: 100% !important;
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  transform: none !important;
+  background-color: #fff;
+  border-radius: 4px;
+  min-width: 200px;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block !important;
+}
+
+/* --- Estilos de ítems --- */
+.dropdown-item {
+  padding: 6px 15px !important;
+  color: #000 !important;
+  background-color: #fff !important;
+}
+
+.dropdown-item:hover {
+  background-color: #F3BD00 !important;
+  color: #000 !important;
+}
+
+/* --- Flecha del submenú --- */
+.dropdown-submenu > .dropdown-item::after {
+  content: "▸";
+  float: right;
+  margin-left: 5px;
+  font-size: 12px;
+  color: #666;
+}
+
+/* ========================================================= */
+/* ======== RESPONSIVE (Vista móvil) ======== */
+/* ========================================================= */
+@media (max-width: 991px) {
+  /* Submenús se muestran como bloques normales */
+  .dropdown-submenu > .dropdown-menu {
+    position: static !important;
+    display: none;
+    box-shadow: none !important;
+    margin-left: 0 !important;
+    border-left: 2px solid #f3bd00;
+  }
+
+  /* Mostrar submenú al tocar o pasar */
+  .dropdown-submenu.show > .dropdown-menu,
+  .dropdown-submenu:hover > .dropdown-menu {
+    display: block !important;
+  }
+
+  /* Ajustes visuales */
+  .dropdown-item {
+    padding: 10px 20px !important;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* Flechita gira hacia abajo */
+  .dropdown-submenu > .dropdown-item::after {
+    content: "▼";
+    float: right;
+    margin-left: 8px;
+  }
+}
+
+/* ========================================================= */
+/* ======== MEJORA DE USABILIDAD MÓVIL (ACORDEÓN SUAVE) ======== */
+/* ========================================================= */
+@media (max-width: 991px) {
+  /* Animación de despliegue */
+  .dropdown-submenu > .dropdown-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.3s ease;
+    padding: 0 0;
+  }
+
+  .dropdown-submenu.show > .dropdown-menu {
+    max-height: 500px; /* ajusta si tienes más elementos */
+    padding: 5px 0;
+  }
+
+  /* Mejora táctil */
+  .dropdown-item {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  /* Flechita animada */
+  .dropdown-submenu > .dropdown-item::after {
+    transition: transform 0.3s ease;
+  }
+
+  .dropdown-submenu.show > .dropdown-item::after {
+    transform: rotate(180deg);
+  }
+
+  /* Fondo ligeramente gris para diferenciar niveles */
+  .dropdown-submenu > .dropdown-menu .dropdown-item {
+    background-color: #fafafa !important;
+  }
+}
+
+/* ========================================================= */
+/* ======== SUBMENÚS CON CLICK (MEJOR USABILIDAD RESPONSIVE) ======== */
+/* ========================================================= */
+
+/* Ocultar submenús por defecto */
+.dropdown-submenu > .dropdown-menu {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  transition: all 0.25s ease;
+  border-left: 2px solid #f3bd00;
+}
+
+/* Mostrar al hacer clic */
+.dropdown-submenu.show > .dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Flecha indicadora de submenú */
+.dropdown-submenu > .dropdown-item::after {
+  content: "▸";
+  float: right;
+  font-size: 12px;
+  color: #777;
+  transition: transform 0.3s ease;
+}
+
+/* Flecha rota al abrir */
+.dropdown-submenu.show > .dropdown-item::after {
+  transform: rotate(90deg);
+  color: #000;
+}
+
+/* --- Mejora visual para móviles --- */
+@media (max-width: 991px) {
+  .dropdown-menu {
+    border: none;
+    box-shadow: none;
+  }
+
+  .dropdown-item {
+    padding: 12px 18px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .dropdown-submenu > .dropdown-menu {
+    margin-left: 15px;
+    border-left: 2px solid #f3bd00;
+  }
+
+  /* Flecha hacia abajo en móviles */
+  .dropdown-submenu > .dropdown-item::after {
+    content: "▼";
+    transform: rotate(0deg);
+  }
+
+  .dropdown-submenu.show > .dropdown-item::after {
+    transform: rotate(180deg);
+  }
+}
+
+@media (max-width: 991px) {
+  .dropdown-submenu > .dropdown-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.3s ease;
+    padding: 0;
+  }
+
+  .dropdown-submenu.show > .dropdown-menu {
+    max-height: 500px;
+    padding: 5px 0;
+  }
+
+  .dropdown-submenu > .dropdown-item::after {
+    content: "▼";
+    float: right;
+    transition: transform 0.3s ease;
+  }
+
+  .dropdown-submenu.show > .dropdown-item::after {
+    transform: rotate(180deg);
+  }
+}
+
+/* ======== RESALTADO MOSTAZA AL PASAR EL MOUSE ======== */
+
+/* Resaltar texto de los dropdowns al pasar el mouse */
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+  background-color: var(--primary) !important;
+  color: #000 !important;
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Cuando el submenú está abierto, mantener el resaltado */
+.dropdown-submenu.show > .dropdown-item {
+  background-color: var(--primary) !important;
+  color: #000 !important;
+}
+
+/* Flecha también se pinta mostaza cuando está activo o en hover */
+.dropdown-submenu.show > .dropdown-item::after,
+.dropdown-submenu > .dropdown-item:hover::after {
+  color: #000 !important;
+}
+
